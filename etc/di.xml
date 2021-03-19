@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!-- Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+     <virtualType name="AHT\Question\Model\ResourceModel\Question\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">AHT_Question</argument>
+            <argument name="resourceModel" xsi:type="string">AHT\Question\Model\ResourceModel\Question</argument>
+        </arguments>
+    </virtualType>
+
+     <virtualType name="AHT\Question\Model\ResourceModel\Category\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">AHT_Categories</argument>
+            <argument name="resourceModel" xsi:type="string">AHT\Question\Model\ResourceModel\Category</argument>
+        </arguments>
+    </virtualType>
+    <!-- Fix for ui_component question_index_listing.xml -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="question_index_listing_data_source" xsi:type="string">AHT\Question\Model\ResourceModel\Question\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

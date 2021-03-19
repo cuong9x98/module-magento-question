@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
-    <!-- module ? sort Order ? resource action  -->
-    <menu>
-      <add id="AHT_Question::greetings" title="Question" translate="title" module="AHT_Question" sortOrder="50" dependsOnModule="AHT_Question" resource="AHT_Question::greetings"/>
-      <add id="AHT_Question::greetings_helloworld" title="All Question" translate="title" module="AHT_Question" parent="AHT_Question::greetings" sortOrder="10" dependsOnModule="AHT_Question" action="exampleadminquestion/helloworld" resource="AHT_Question::greetings"/>
-    </menu>
+	<menu>
+		<add id="AHT_Question::question" title="Question" translate="Question" module="AHT_Question" sortOrder="50"   resource="AHT_Question::question"/>
+		<add id="AHT_Question::index" title="Question" module="AHT_Question" parent="AHT_Question::question" action="question/index/" resource="AHT_Question::index" sortOrder="55" />
+	</menu>
 </config>

@@ -1,5 +1,5 @@
 <?php
-namespace AHT\Question\Controller\Adminhtml\HelloWorld;
+namespace AHT\Question\Controller\Adminhtml\Index;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
@@ -12,7 +12,7 @@ use Magento\Framework\View\Result\PageFactory;
  */
 class Index extends Action implements HttpGetActionInterface
 {
-    const MENU_ID = 'AHT::greetings_helloworld';
+    const MENU_ID = 'AHT_Question::question';
 
     /**
      * @var PageFactory
@@ -43,7 +43,7 @@ class Index extends Action implements HttpGetActionInterface
     {
         $resultPage = $this->resultPageFactory->create();
         $resultPage->setActiveMenu(static::MENU_ID);
-        $resultPage->getConfig()->getTitle()->prepend(__('Question'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Question All'));
 
         return $resultPage;
     }
