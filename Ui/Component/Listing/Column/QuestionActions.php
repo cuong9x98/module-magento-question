@@ -1,37 +1,37 @@
 <?php
-
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 namespace AHT\Question\Ui\Component\Listing\Column;
 
 use Magento\Framework\UrlInterface;
-use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
+use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Listing\Columns\Column;
+use Magento\Framework\App\ObjectManager;
+use Magento\Framework\Escaper;
 
 /**
- * @method AuthorActions setName($name)
+ * Class to build edit and delete link for each item.
  */
 class QuestionActions extends Column
 {
     /**
-     * Url path  to edit
-     * 
-     * @var string
+     * Url path
      */
-    const URL_PATH_EDIT = 'question/index/edit';
+    const URL_PATH_EDIT = 'question/edit';
+    const URL_PATH_DELETE = 'question/delete';
 
     /**
-     * Url path  to delete
-     * 
-     * @var string
+     * @var UrlInterface
      */
-    const URL_PATH_DELETE = 'question/index/delete';
+    protected $urlBuilder;
 
     /**
-     * URL builder
-     * 
-     * @var \Magento\Framework\UrlInterface
+     * @var Escaper
      */
-    protected $_urlBuilder;
+    private $escaper;
 
     /**
      * @param ContextInterface $context
@@ -46,51 +46,65 @@ class QuestionActions extends Column
         UrlInterface $urlBuilder,
         array $components = [],
         array $data = []
-    )
-    {
-        $this->_urlBuilder = $urlBuilder;
+    ) {
+        $this->urlBuilder = $urlBuilder;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
-
     /**
-     * Prepare Data Source
-     *
-     * @param array $dataSource
-     * @return array
+     * @inheritDoc
      */
     public function prepareDataSource(array $dataSource)
     {
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as & $item) {
-                if (isset($item['id'])) {
+                if (isset($item['question_id'])) {
+                    $question = $this->getEscaper()->escapeHtmlAttr($item['question']);
                     $item[$this->getData('name')] = [
                         'edit' => [
-                            'href' => $this->_urlBuilder->getUrl(
+                            'href' => $this->urlBuilder->getUrl(
                                 static::URL_PATH_EDIT,
                                 [
-                                    'id' => $item['id']
+                                    'question_id' => $item['question_id'],
                                 ]
                             ),
-                            'label' => __('Edit')
+                            'label' => __('Edit'),
+                            '__disableTmpl' => true,
                         ],
                         'delete' => [
-                            'href' => $this->_urlBuilder->getUrl(
+                            'href' => $this->urlBuilder->getUrl(
                                 static::URL_PATH_DELETE,
                                 [
-                                    'id' => $item['id']
+                                    'question_id' => $item['question_id'],
                                 ]
                             ),
                             'label' => __('Delete'),
                             'confirm' => [
-                                'title' => __('Delete "${ $.$data.title }"'),
-                                'message' => __('Are you sure you wan\'t to delete "${ $.$data.title }" ?')
-                            ]
-                        ]
+                                'title' => __('Delete %1', $question),
+                                'message' => __('Are you sure you want to delete a %1 record?', $question),
+                            ],
+                            'post' => true,
+                            '__disableTmpl' => true,
+                        ],
                     ];
                 }
             }
         }
+
         return $dataSource;
+    }
+
+    /**
+     * Get instance of escaper
+     *
+     * @return Escaper
+     * @deprecated 101.0.7
+     */
+    private function getEscaper()
+    {
+        if (!$this->escaper) {
+            $this->escaper = ObjectManager::getInstance()->get(Escaper::class);
+        }
+        return $this->escaper;
     }
 }
