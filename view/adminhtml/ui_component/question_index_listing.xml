@@ -172,7 +172,7 @@
                 </item>
             </argument>
         </column>
-         <column name="content">
+         <column name="question">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="sortOrder" xsi:type="number">4</item>
@@ -182,7 +182,7 @@
                 </item>
             </argument>
         </column>
-        <actionsColumn name="actions" class="AHT\Question\Ui\Component\Listing\Column\QuestionActions">
+         <actionsColumn name="actions" class="AHT\Question\Ui\Component\Listing\Column\QuestionActions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="indexField" xsi:type="string">id</item>

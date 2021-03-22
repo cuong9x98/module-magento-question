@@ -54,7 +54,7 @@ class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvide
     protected function _initSelect()
     {
         $this->getSelect()
-            ->from(['main_table' => 'AHT_Question']);          
+            ->from(['main_table' => 'aht_question']);          
         $this->addFilterToMap('id', 'main_table.id');
         return $this;
     }

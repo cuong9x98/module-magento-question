@@ -20,7 +20,7 @@ class InstallData implements InstallDataInterface
         $data = [
             'name' => "cuong", 
             'email' => "cuong9x98@gmail.com",
-            'content'      => "cuong"
+            'question'      => "cuong",
         ];
         $post = $this->_postFactory->create();
         $post->addData($data)->save();
