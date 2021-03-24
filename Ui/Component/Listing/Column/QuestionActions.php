@@ -20,8 +20,8 @@ class QuestionActions extends Column
     /**
      * Url path
      */
-    const URL_PATH_EDIT = 'question/edit';
-    const URL_PATH_DELETE = 'question/delete';
+    const URL_PATH_EDIT = 'question/question/fix';
+    const URL_PATH_DELETE = 'question/question/delete';
 
     /**
      * @var UrlInterface

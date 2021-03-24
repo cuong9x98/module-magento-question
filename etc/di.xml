@@ -22,4 +22,6 @@
             </argument>
         </arguments>
     </type>
+    <preference for="AHT\Question\Api\QuestionRepositoryInterface" type="AHT\Question\Model\QuestionRepository"/>
+    <preference for="AHT\Question\Api\Data\QuestionInterface" type="AHT\Question\Model\Question"/>
 </config>
