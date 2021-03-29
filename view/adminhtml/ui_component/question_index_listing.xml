@@ -106,7 +106,7 @@
         <settings>
             <editorConfig>
                 <param name="clientConfig" xsi:type="array">
-                    <item name="saveUrl" xsi:type="url" path="qaa/question/inlineEdit"/>
+                    <item name="saveUrl" xsi:type="url" path="question/question/inlineEdit"/>
                     <item name="validateBeforeSave" xsi:type="boolean">false</item>
                 </param>
                 <param name="indexField" xsi:type="string">question_id</param>
