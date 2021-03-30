@@ -1,119 +1,172 @@
 <?php
 namespace AHT\Question\Model;
 
-class Question extends \Magento\Framework\Model\AbstractModel {
+use \AHT\Question\Api\Data\QuestionInterface;
+
+class Question extends \Magento\Framework\Model\AbstractModel implements \AHT\Question\Api\Data\QuestionInterface
+{
+
+    /**
+     * Undocumented function
+     *
+     * @param \Magento\Framework\Model\Context $context
+     * @param \Magento\Framework\Registry $registry
+     * @param \Magento\Framework\Model\ResourceModel\AbstractResource $resource
+     * @param \Magento\Framework\Data\Collection\AbstractDb $resourceCollection
+     * @param array $data
+     */
     public function __construct(
-   	 \Magento\Framework\Model\Context $context,
-   	 \Magento\Framework\Registry $registry,
-   	 \Magento\Framework\Model\ResourceModel\AbstractResource $resource =
-   	 null,
-   	 \Magento\Framework\Data\Collection\AbstractDb $resourceCollection =
-   	 null,
-   	 array $data = []
+        \Magento\Framework\Model\Context $context,
+        \Magento\Framework\Registry $registry,
+        \Magento\Framework\Model\ResourceModel\AbstractResource $resource=null,
+        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection=null,
+        array $data = []
     ) {
-   	 parent::__construct($context, $registry, $resource,$resourceCollection, $data);
+        parent::__construct($context, $registry, $resource, $resourceCollection, $data);
     }
+    /**
+     * @return void
+     */
     
-    public function _construct() {
+	public function _construct()
+	{
 		$this->_init('AHT\Question\Model\ResourceModel\Question');
     }
-	public function getName()
-    {
+    /**
+     * Undocumented function
+     *
+     * @return string
+     */
+    public function getName() {
         return $this->getData("name");
     }
-
-    public function getStatus()
-    {
-        return $this->getData("status");
-    }
-
-    public function getEmail()
-    {
+    /**
+     * Undocumented function
+     *
+     * @return string
+     */
+    public function getEmail() {
         return $this->getData("email");
     }
-
-    public function getQuestion()
-    {
+    /**
+     * Undocumented function
+     *
+     * @return string
+     */
+    public function getQuestion() {
         return $this->getData("question");
     }
-
-    public function getAnswer()
-    {
+    /**
+     * Undocumented function
+     *
+     * @return string
+     */
+    public function getAnswer() {
         return $this->getData("answer");
     }
-
-    public function getCreatedAt()
-    {
+    /**
+     * Undocumented function
+     *
+     * @return string
+     */
+    public function getCreatedAt() {
         return $this->getData("created_at");
     }
-
-    public function getUpdatedAt()
-    {
+    /**
+     * Undocumented function
+     *
+     * @return string
+     */
+    public function getUpdatedAt() {
         return $this->getData("updated_at");
     }
-
-    public function getStoreId()
-    {
-        return $this->getData("store_id");
+    /**
+     * Undocumented function
+     *
+     * @return string
+     */
+    public function getImagePath() {
+        return $this->getData("image_path");
     }
+    /**
+     * Undocumented function
+     *
+     * @return int
+     */
+  
+    /**
+     * Undocumented function
+     *
+     * @return int
+     */
+    public function getStoreId() {
+        return $this->getData("store_id");
 
-    public function getProductId()
-    {
+    }
+    /**
+     * Undocumented function
+     *
+     * @return int
+     */
+    public function getProductId() {
         return $this->getData("product_id");
     }
-
-    public function getUserId()
-    {
+    /**
+     * Undocumented function
+     *
+     * @return int
+     */
+    public function getUserId() {
         return $this->getData("user_id");
     }
-
-    public function setUserId($name)
+    /**
+     * Undocumented function
+     *
+     * @param string $name
+     * @return null
+     */
+    public function setId($id)
     {
-        return $this->setData("user_id", $name);
+        $this->setData('question_id', $id);
     }
-
-    public function setName($name)
-    {
+    public function setName($name) {
         return $this->setData("name", $name);
     }
-
-    public function setStoreId($name)
-    {
-        return $this->setData("store_id", $name);
-    }
-
-    public function setCreatedAt($created_at)
-    {
-        return $this->setData("created_at", $created_at);
-    }
-
-    public function setUpdatedAt($updated_at)
-    {
-        return $this->setData("updated_at", $updated_at);
-    }
-
-    public function setEmail($email)
-    {
-        return $this->setData("email", $email);
-    }
-
-    public function setProductId($productId)
-    {
+    /**
+     * Undocumented function
+     *
+     * @param int
+     * @return null
+     */
+    public function setProductId($productId) {
         return $this->setData("product_id", $productId);
     }
-
-    public function setQuestion($question)
-    {
+    /**
+     * Undocumented function
+     *
+     * @param string $email
+     * @return null
+     */
+    public function setEmail($email) {
+        return $this->setData("email", $email);
+    }
+    /**
+     * Undocumented function
+     *
+     * @param string $question
+     * @return null
+     */
+    public function setQuestion($question) {
         return $this->setData("question", $question);
-    }
 
-    public function setAnswer($answer)
-    {
+    }
+    /**
+     * Undocumented function
+     *
+     * @param string $answer
+     * @return null
+     */
+    public function setAnswer($answer) {
         return $this->setData("answer", $answer);
-    }
-
-    public function setStatus($status)
-    {
-        return $this->setData("status", $status);
     }
 }

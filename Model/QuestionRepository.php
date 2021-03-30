@@ -1,52 +1,83 @@
 <?php
 namespace AHT\Question\Model;
 
-use AHT\Question\Api\Data\QuestionInterface;
+use AHT\Question\Model\QuestionFactory;
 use AHT\Question\Model\ResourceModel\Question;
+use AHT\Question\Api\Data\QuestionInterface;
+use AHT\Question\Model\ResourceModel\Question as Resource;
 
-class QuestionRepository implements \AHT\Question\Api\QuestionRepositoryInterface
-{
+class QuestionRepository implements \AHT\Question\Api\QuestionRepositoryInterface {
+
+    protected $resource;
     protected $_questionFactory;
     protected $_questionResource;
     protected $_request;
     public function __construct(
+        Resource  $resource,
         QuestionFactory $questionFactory,
         Question $questionResource,
         \Magento\Framework\App\RequestInterface $request
     ) {
+        $this->resource = $resource;
         $this->_questionFactory = $questionFactory;
         $this->_questionResource = $questionResource;
         $this->_request = $request;
     }
-
+   
     /**
-     * function get all data
+     * Undocumented function
      *
-     * @return \AHT\Question\Api\Data\QuestionInterface
+     * @param [type] $qaId
+     * @return void
      */
-    public function getList()
-    {
-        $collection = $this->_questionFactory->create()->getCollection();
-        return $collection->getData();
+    public function get($qaId) {
+        $id = (int) $qaId;
+        $model = $this->_questionFactory->create();
+        $this->_questionResource->load($model, $id);
+        return $model->getData();
     }
 
     /**
      * Undocumented function
      *
-     * @param \AHT\Question\Api\Data\QuestionInterface $Post
-     * @return \AHT\Question\Api\Data\QuestionInterface
+     * @return null
      */
+    public function getList() {
+        // die('hoho');
+        $collection = $this->_questionFactory->create()->getCollection();
+        return $collection->getData();
+    }
 
-    public function save(QuestionInterface $question)
+    /**
+     * Save Block data
+     *
+     * 
+     * @return \AHT\Question\Model\Question
+     */
+    public function save(QuestionInterface $qa) {
+        $this->_questionResource->save($qa);
+        return $qa->getData();
+    }
+
+
+    public function updatePost(String $id, QuestionInterface $post)
     {
-        try {
-            $this->_questionResource->save($question);
-        } catch (\Exception $exception) {
-            throw new CouldNotSaveException(
-                __('Could not save the Post: %1', $exception->getMessage()),
-                $exception
-            );
-        }
-        return $question->getData();
+            $question_id = (int) $id;
+            $model = $this->_questionFactory->create();
+            $this->_questionResource->load($model, $question_id);
+            $model->setData($post->getData());
+            $model->setId($question_id);
+            $this->_questionResource->save($model);
+
+            return $model->getData();
+    }
+
+    public function deleteById($postId)
+    {
+        $id = (int) $postId;
+        $model = $this->_questionFactory->create();
+        $this->resource->load($model, $id);
+        $model->delete();
+        return true;
     }
 }
