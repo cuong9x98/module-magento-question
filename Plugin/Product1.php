@@ -1,7 +1,9 @@
 <?php
 namespace AHT\Question\Plugin;
 
-class Product
+use Magento\Framework\Interception;
+
+class Product1
 {
    public function afterGetPrice(\Magento\Catalog\Model\Product $subject, $result)
    {
