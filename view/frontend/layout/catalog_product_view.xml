@@ -9,7 +9,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="product.info.details">
-            <block class="Magento\Framework\View\Element\Template" name="qa.tab" as="qa.tab" template="AHT_Question::product/view/question.phtml" group="detailed_info" cacheable="false" >
+            <block class="Magento\Framework\View\Element\Template" name="qa.tab" as="qa.tab" template="AHT_Question::product/view/question.phtml" group="detailed_info" cacheable="false" ifconfig="question_pending/question/is_enabled">
                 <arguments>
                     <argument translate="true" name="title" xsi:type="string">Q and A</argument>
                     <argument name="sort_order" xsi:type="string">20</argument>
