@@ -1,6 +1,7 @@
 # Ok Stat Plugin
+	- Cho phép custom bất kì phương thức nào trong core magento 2 mà không ảnh hưởng đến lớp cha khác với preference cho phép ghi đè phương thức
 ## Khởi tạo 
-###1.Đầu tiên, chúng ta phải khai báo plugin trong etc\frontend\file di.xml 
+### 1.Đầu tiên, chúng ta phải khai báo plugin trong etc\frontend\file di.xml 
 ```
 	<?xml version="1.0"?>
 <!-- Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider -->
@@ -23,7 +24,8 @@
 	+ plugin name là tên plugin chú ý các plugin phải có tên khác nhau thì thuộc tính sortOrder mới họat động.
 	+ plugin type là namespace plugin của chúng ta
 	+ sortOrder là độ ưu tiên của plugin trong đó sortOrder nhỏ sẽ chạy trước.
-###2. Tiếp theo, chúng ta tạo các file Product1.php, Product2.php, Product3.php trong thư mục Plugin của module mình
+
+### 2.Tiếp theo, chúng ta tạo các file Product1.php, Product2.php, Product3.php trong thư mục Plugin của module mình
 ```
 	<?php
 		namespace AHT\Question\Plugin;
@@ -68,12 +70,14 @@
 		   }
 		}
 ```
+- Chạy lại c:c
 - Chú ý:
 	+ Befoce là thay đổi tham số đầu vào của phương thức,after là thay đổi kết quả trả về của phương thức, around là cả hai vừa thay đổi tham số đầu vào và thay đổi giá trị trả về.
 	+ Luồng chạy của các plugin sẽ chạy vào plugin có sortOrder nhỏ nhất trong plugin sẽ chạy befoce trc sau đó chạy around (f), tiếp theo mới chạy đến Plugin tiếp theo tương tự như thế. Khi chạy hết các befoce với around (f) thì sẽ chạy code chính của các phương thức . Tại plugin cuối cùng sẽ chạy around (s) rồi chạy after. Tiếp theo sẽ chạy đến các Plugin tiếp theo từ softorder cao đến thấp.
 	+ Từ luồng chạy trên có thể kết luận khi hai plugin cùng tác động đến 1 phương thức thì chúng sẽ cập nhật kết quả trả về của từng phương thức . Trong trường
  hợp này thì chúng cộng dồn các kết quả trả về giá sản phầm.
- ###3.Tạo Module mới cùng tác động lên phương thức 
+
+### 3.Tạo Module mới cùng tác động lên phương thức 
 ```
 <?xml version="1.0"?>
 <!-- Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider -->
