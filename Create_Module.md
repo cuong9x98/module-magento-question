@@ -1,6 +1,6 @@
 # Ok,Start create module
-## 1. Create Module
-### a.Create file registration.php (AHT/Question)
+## I. Create Module
+### 1.Create file registration.php (AHT/Question)
 ```
 <?php
 \Magento\Framework\Component\ComponentRegistrar::register(
@@ -11,7 +11,7 @@
 
 ```
 
-### b.Create file module.xml(AHT/Question/etc)
+### 2.Create file module.xml(AHT/Question/etc)
 ```
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
@@ -26,8 +26,8 @@
 - Chạy setup:upgrade
 => Đăng kí với khai báo module
 
-## 2.Tạo nút click trong menu admin
-### a.Tạo file menu.xml trong etc/adminhtml
+## II.Tạo nút click trong menu admin
+### 1.Tạo file menu.xml trong etc/adminhtml
 ```
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
@@ -47,10 +47,10 @@
 	+ action là tạo ra hành động khi ta click vào thì url sẽ thay đổi.
 => Tại đây chúng ta đã tạo ra nút Question trong menu nhưng nút chưa được xử lí.
 
-### b.Tạo Database cho question.
+### 2.Tạo Database cho question.
 - Tạo thư mục Setup và trong đó có 2 file : InstallSchema.php và InstallData.php
 
-- InstallSchema.php:
+- 1.InstallSchema.php:
 ```
 	<?php
 /**
@@ -76,7 +76,7 @@ class InstallSchema implements InstallSchemaInterface
     public function install(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
         /**
-         * Create table 'greeting_message'
+         * Create table 'aht_question'
         */
         $table = $setup->getConnection()
         ->newTable($setup->getTable('aht_question'))
@@ -166,7 +166,7 @@ class InstallSchema implements InstallSchemaInterface
 - SchemaSetupInterface là đối tượng cung cấp các chức năng tương tác với cơ sở dữ liệu.
 - ModuleContextInterface có chứa phương thức getVesion trả về phiên bản hiện tại.
 
-- InstallData.php:
+- 2.InstallData.php:
 ```
 <?php
 namespace AHT\Question\Setup;
@@ -205,7 +205,7 @@ class InstallData implements InstallDataInterface
 	+ muốn chạy được thì đảm bảo module của bạn chưa được chạy
 	+ Các bạn có thể thấy trong method contructor của InstallData có gọi ra lớp Model -> Chúng ta phải đi tạo file trong thư mục module 
 
-- Questio.php(Module)
+- 3.Question.php(Module)
 ```
 <?php
 namespace AHT\Question\Model;
@@ -380,5 +380,161 @@ class Question extends \Magento\Framework\Model\AbstractModel implements \AHT\Qu
     }
 }
 ``` 
+- Chú ý: 
+    + file Question.php copy từ file core lên cụ thể là Page.php trong module cms chúng ta sẽ customer lại theo đúng data của chúng ta  
+
+- 4. Tạo file Question.php (Model/ResourceModel)
+```
+<?php
+namespace AHT\Question\Model\ResourceModel;
+
+class Question extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb {
+    protected function _construct() 
+    {
+        $this->_init('aht_question', 'question_id');
+    }
+}
+
+```
+- Chú ý:
+    + file Question.php copy từ file Page.php trong ResourceModel trong module cms và chúng ta chỉ dùng phương thức contructor các phương thức còn lại chưa dùng đến và customer theo module của chúng ta.
+
+- 5. Tạo file QuestionInterface.php (Api/Data)
+```
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+namespace AHT\Question\Api\Data;
+
+/**
+ * CMS block interface.
+ * @api
+ * @since 100.0.2
+ */
+interface QuestionInterface
+{
+    /**#@+
+     * Constants for keys of data array. Identical to the name of the getter in snake case
+     */
+    // const QUESTION_ID      = 'qa_id';
+    // const NAME = "name";
+    // const EMAIL         = 'email';
+    // const QUESTION       = 'question';
+    // const CREATED_AT = 'created_at';
+    // const UPDATED_AT   = 'updated_at';
+    // const STATUS     = 'status';
+    // const ANSWER       = 'answer';
+    // const STORE_ID = 'store_id';
+    // const USER_ID   = 'user_id';
+    // const IMAGE_PATH     = 'image_path'; 
+    // const PRODUCT_ID = "product_id";
+    /**#@-*/
+  
+    /**
+     * Undocumented function
+     *
+     * @return string
+     */
+    public function getName();
+    /**
+     * Undocumented function
+     *
+     * @return string
+     */
+    public function getEmail();
+    /**
+     * Undocumented function
+     *
+     * @return string
+     */
+    public function getQuestion();
+    /**
+     * Undocumented function
+     *
+     * @return int
+     */
+    public function getProductId();
+    /**
+     * Undocumented function
+     *
+     * @return int
+     */
+    /**
+     * Undocumented function
+     *
+     * @return string
+     */
+    public function getAnswer();
+    /**
+     * Undocumented function
+     *
+     * @return string
+     */
+    public function getCreatedAt();
+    /**
+     * Undocumented function
+     *
+     * @return string
+     */
+    public function getUpdatedAt();
+    /**
+     * Undocumented function
+     *
+     * @return string
+     */
+  
+     /**
+     * Set question id
+     *
+     * @param int $id
+     * @return @this
+     */
+    public function setId($id);
+    /**
+     * Undocumented function
+     *
+     * @param string $name
+     * @return null
+     */
+    public function setName($name);
+    /**
+     * Undocumented function
+     *
+     * @param string $email
+     * @return null
+     */
+    public function setEmail($email);
+    /**
+     * Undocumented function
+     *
+     * @param string $question
+     * @return null
+     */
+    public function setQuestion($question);
+    /**
+     * Undocumented function
+     *
+     * @param string $answer
+     * @return null
+     */
+    public function setAnswer($answer);
+    /**
+     * Undocumented function
+     *
+     * @param int $productId
+     * @return null
+     */
+    public function setProductId($productId);
+
+}
+
+```
+- Chú ý : file này được lấy từ Api\Data\PageInterace.php của module cms và chúng ta sẽ customer lại theo data của chúng ta.
+
+#### Các bạn lưu ý : Tạm thời chúng ta làm theo tư duy copy file nào mà trong file đó có phương thức mình cần mà phương thức đó gọi đến lớp khác thì chúng ta tiếp tục copy từ core lên . Ở đây mình cần InstallData.php nhưng để sử dụng được nó thì mình cần thêm các file module và file trong thư mục API
+
+
 
 
