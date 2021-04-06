@@ -14,7 +14,7 @@
             <argument name="resourceModel" xsi:type="string">AHT\Question\Model\ResourceModel\Category</argument>
         </arguments>
     </virtualType>
-    <!-- Fix for ui_component question_index_listing.xml -->
+    <!-- Đăng kí nguồn dữ liệu -->
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">

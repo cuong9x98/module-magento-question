@@ -383,7 +383,7 @@ class Question extends \Magento\Framework\Model\AbstractModel implements \AHT\Qu
 - Chú ý: 
     + file Question.php copy từ file core lên cụ thể là Page.php trong module cms chúng ta sẽ customer lại theo đúng data của chúng ta  
 
-- 4. Tạo file Question.php (Model/ResourceModel)
+- 4.Tạo file Question.php (Model/ResourceModel)
 ```
 <?php
 namespace AHT\Question\Model\ResourceModel;
@@ -399,7 +399,7 @@ class Question extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb {
 - Chú ý:
     + file Question.php copy từ file Page.php trong ResourceModel trong module cms và chúng ta chỉ dùng phương thức contructor các phương thức còn lại chưa dùng đến và customer theo module của chúng ta.
 
-- 5. Tạo file QuestionInterface.php (Api/Data)
+- 5.Tạo file QuestionInterface.php (Api/Data)
 ```
 <?php
 /**
@@ -533,7 +533,7 @@ interface QuestionInterface
 ```
 - Chú ý : file này được lấy từ Api\Data\PageInterace.php của module cms và chúng ta sẽ customer lại theo data của chúng ta.
 
-#### Các bạn lưu ý : Tạm thời chúng ta làm theo tư duy copy file nào mà trong file đó có phương thức mình cần mà phương thức đó gọi đến lớp khác thì chúng ta tiếp tục copy từ core lên . Ở đây mình cần InstallData.php nhưng để sử dụng được nó thì mình cần thêm các file module và file trong thư mục API
+#### Các bạn lưu ý : Tạm thời chúng ta làm theo tư duy copy file nào mà trong file đó có phương thức mình cần mà phương thức đó gọi đến lớp khác thì chúng ta tiếp tục copy từ core lên . Ở đây mình cần InstallData.php nhưng để sử dụng được nó thì mình cần thêm các file module và riêng file trong Api thì chúng ta chưa cần đến các bạn có thể không thêm và sửa lại file InstallData.php (mình bỏ cái use và imple) nhưng mình sẽ vẫn cho vào vì kiểu gì cũng làm 
 
 
 
