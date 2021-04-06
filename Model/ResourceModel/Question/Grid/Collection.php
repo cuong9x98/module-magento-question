@@ -56,11 +56,11 @@ class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvide
          $this->getSelect()
             ->from(['main_table' => 'aht_question'])
             ->joinLeft('catalog_product_entity_varchar',
-            'main_table.product_id = catalog_product_entity_varchar.entity_id AND catalog_product_entity_varchar.attribute_id',
+            'main_table.product_id = catalog_product_entity_varchar.entity_id AND catalog_product_entity_varchar.attribute_id = 73',
             [
                 'catalog_product_entity_varchar.value'
             ]);          
-        // $this->addFilterToMap('id', 'main_table.id');
+        $this->addFilterToMap('id', 'main_table.id');
         return $this;
     }
 }
