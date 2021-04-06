@@ -1,17 +1,8 @@
 # module-magento-question
 # Bat dau ngay
-```
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
-   <acl>
-        <resources>
-            <resource id="Magento_Backend::admin">
-                <resource id="AHT_Question::question" title="Use ACL" sortOrder="100">
-                    <resource id="AHT_Question::index" title="Question" sortOrder="10"/>
-                </resource>
-            </resource>
-        </resources>
-    </acl>
-</config>
 
-```
+#### Mô tả: 
+
+##### - Module cho phép khách hàng đặt câu hỏi cho từng sản phẩm và quản trị viên sẽ tiếp nhận câu hỏi và trả lời.
+- Quản trị viên cũng có thể cho hiển thị hoặc ẩn các câu hỏi hoặc ẩn giao diện frontend.
+- Phân quyền acl và có sử dụng Plugin.
