@@ -1,4 +1,13 @@
-<?php
+# OK. Tiếp theo là Helper 
+
+- Helper có tác dụng chính là hỗ trợ các mode, controller, template làm việc bằng cách cung cấp các hàm cần thiết có trong Helper 
+- Các bạn có thể lại helper từ core AbtractionHelper hoặc viết Helper riêng và kế thừa Helper Core 
+
+## Ví dụ;
+ - Ở đây mình sẽ tạo thêm 1 hàm nữa trong Controller có tên là Price.php và 1 file Data.php trong thư mục Helper:
+ - Price.php
+ ```
+ <?php
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
@@ -40,7 +49,7 @@ class Price extends \Magento\Backend\App\Action implements HttpGetActionInterfac
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Registry $coreRegistry,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \AHT\Question\Helper\Data $helperData
+         \AHT\Question\Helper\Data $helperData
     ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->_coreRegistry = $coreRegistry;
@@ -76,3 +85,58 @@ class Price extends \Magento\Backend\App\Action implements HttpGetActionInterfac
         echo $this->helperData->getPrice($model);
     }
 }
+
+ ```
+ - Ở đây mình sẽ dùng Helper và echo ra giá sản phẩm dựa vào đối tượng model đã được tìm kiếm id.
+ - Data.php
+
+ ```
+<?php
+namespace AHT\Question\Helper;
+
+use Magento\Framework\App\Helper\AbstractHelper;
+
+class Data extends \Magento\Catalog\Helper\Product
+{
+    protected $_customerSession;
+
+    public function __construct(
+        \Magento\Customer\Model\Session $customerSession
+    ) {
+        $this->_customerSession = $customerSession;
+    }
+
+    public function getCustomerSession() {
+        return $this->_customerSession;
+    }
+     /**
+     * Retrieve product price
+     *
+     * @param ModelProduct $product
+     * @return float
+     */
+    public function getPrice($product)
+    {
+        return $product->getPrice()*2;
+    }
+}
+ ```
+ - Kế thừa lại Helper\Product và custom lại hàm getPrice
+
+ => Tạo thêm nút getPrice trong ActionQuestion.php
+
+ ```
+ 'price' => [
+                            'href' => $this->urlBuilder->getUrl(
+                                static::URL_PATH_GET_PRICE,
+                                [
+                                    'product_id' => $item['product_id'],
+                                ]
+                            ),
+                            'label' => __('Get price'),
+                            '__disableTmpl' => true,
+                        ],
+ ```
+- Trong đó, URL_PATH_GET_PRICE được khai báo hằng là const URL_PATH_GET_PRICE = 'question/question/price';
+
+## Ok, bây giờ chúng ta sẽ test xem có trả về giá sản phẩm không bằng cách vào trang list question chọn Get price trong Action thì sẽ hiện thị ra giá sản phẩm.

@@ -4,11 +4,16 @@
 
 -  Nếu các bạn đã có source code của mình rồi thì các bạn thấy trong mode có rất nhiều file thì bạn chỉ cần chú ý giúp mình 4 file này thôi đây là 4 file quan trọng cấu thành mode :
     + Mode/Question.php : Đây là file chúng ta đều biết là class data nó chứa các hàm contructor đến Resource Module, chứa các hàm get set các thuộc tính.
-    + Mode/ResourceModeQuestion/Question.php : Đây là file bạn sẽ xác định table mà mình làm việc xác định khóa chính rất giống với phần các bạn làm trong MVC đúng chứ.
-    + Mode/ResourceModeQuestion/Question/Collection.php : Các bạn phải biết Magento sử dụng CRUD ví dụ R(Reading) nó chỉ thực hiện 1 bản ghi cho bạn thôi vậy nên nếu muốn thực hiện truy vấn nhiều bản ghi và các bản ghi có điều kiện thì lúc đó Magento phải sử dụng file Collection để hỗ trợ việc truy vấn nhiều bản ghi.
+    + Mode/ResourceModeQuestion/Question.php : 
+        - Đây là file bạn sẽ xác định table mà mình làm việc xác định khóa chính rất giống với phần các bạn làm trong MVC đúng chứ.
+        - file Model/Question.php sẽ làm việc với Db thông qua file Resource Model nó sẽ gọi đến Model/ResourceModel/Question.php
+        - Model/ResourceModel/Question.php gọi phương thức truyền 2 đối số tên bảng và khóa chính, không thực hiện bất kì truy vấn nào. Nó extend đến AbstractDb có chứa các CRUD
+    + Mode/ResourceModeQuestion/Question/Collection.php : Vậy còn file Model/ResourceModel/Question/Grid/Collection.php dùng để làm gì. Các bạn để ý lớp Collection kế thừa từ UI/Component nên nó sẽ được sử dụng cho UI/Component. Ở đây, do giao diện của mình sử dụng ui/component nên để giao diện có thể hiểu dữ liệu đổ vào giao diện thì bạn phải có file Collection hỗ trợ cho việc đổ dữ liệu vào giao diện. Các có thể thấy trong file di.xml chúng ta phải 'tiêm' Collection để giao diện có thể hiểu.
     + Mode/ResourceModeQuestion/Question/Grid/Collection.php : nếu bạn sử dụng ui/component thì bạn phải sử dụng nó vì nó có tác dụng giao tiếp giữa dữ liệu và giao diện ui/compinent. Các bạn sẽ thấy nó extend đến \Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult.
 - Các file trong Mode/Question chỉ là các file liên quan status trong ui/component và DataProvider file hỗ trợ đổ dữ liệu.
 - Riêng file QuestionReponsive.php thì nó thuộc API thì ở phần API mình sẽ nói.
+
+
 
 ## 1.Question.php(Module)
 ```
