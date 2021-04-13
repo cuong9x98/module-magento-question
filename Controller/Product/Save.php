@@ -53,12 +53,11 @@ class Save extends \Magento\Framework\App\Action\Action
 
 	public function execute()
 	{
-
 		$question = $this->_questionFactory->create();
 		try {
-			if (isset($_POST['createbtn'])) {
-				$question->setName($this->_customerSession->getCustomerData()->getLastname());
-				$question->setEmail($this->_customerSession->getCustomerData()->getEmail());
+			if (isset($_POST['submit'])) {
+				$question->setName($this->getRequest()->getParam("name"));
+				$question->setEmail($this->getRequest()->getParam("email"));
 				$question->setQuestion($this->getRequest()->getParam("question"));
 				$question->setProductId($this->getRequest()->getParam("productid"));
 				$question->setUserId($this->_customerSession->getCustomerId());

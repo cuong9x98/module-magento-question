@@ -54,6 +54,9 @@ class ListView extends \Magento\Catalog\Block\Product\View
         array $data = []
     ) {
         $this->_collectionFactory = $collectionFactory;
+
+
+        
         parent::__construct(
             $context,
             $urlEncoder,

@@ -16,4 +16,7 @@
 ## 4.view 
 	- Chứa các file view phía admin và clien của module.
 ## 5.Api
-	- 
+	- Cho phép các ứng dụng các sử dụng được tài nguyên của hệ thống chúng ta.
+
+## 6.Helper
+	- Duoc su dung nham muc dich tao ra nhung phuong thuc co the tai su dung nhieu lan . Cac controller hay model hay phtml deu co the su dung cac ham trong helper, tiet kiem tai nguyen.

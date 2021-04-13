@@ -68,9 +68,6 @@ class InlineEdit extends \Magento\Backend\App\Action
                     /** @var \Magento\Cms\Model\Block $block */
                     $block = $this->questionFactory->create();
                     $this->questionResource->load($block,$blockId);
-                    // if (!$block->getId()) {
-                    //     throw new NoSuchEntityException(__('The CMS block with the "%1" ID doesn\'t exist.', $blockId));
-                    // }
                     try {
                         $block->setData(array_merge($block->getData(), $postItems[$blockId]));
                         $this->questionResource->save($block);

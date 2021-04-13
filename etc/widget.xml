@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="aht_question_slider" class="AHT\Question\Block\Frontend\Question\Index" is_email_compatible="false" >
+        <label translate="true">Question</label>
+        <description translate="true">AHT Question</description>
+        <parameters>
+			<parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="widget/index.phtml" selected="true">
+                        <label translate="true">Question ALll</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

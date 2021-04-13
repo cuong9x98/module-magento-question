@@ -84,28 +84,6 @@
                 </checkbox>
             </formElements>
         </field>
-        <field name="answer_status" component="Magento_Ui/js/form/element/single-checkbox-toggle-notice" formElement="checkbox">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="default" xsi:type="number">0</item>
-                </item>
-            </argument>
-            <settings>
-                <dataType>int</dataType>
-                <label translate="true">Answer Status</label>
-            </settings>
-            <formElements>
-                <checkbox>
-                    <settings>
-                        <valueMap>
-                            <map name="false" xsi:type="number">0</map>
-                            <map name="true" xsi:type="number">1</map>
-                        </valueMap>
-                        <prefer>toggle</prefer>
-                    </settings>
-                </checkbox>
-            </formElements>
-        </field>
         <field name="name" sortOrder="20" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

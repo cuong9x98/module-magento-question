@@ -1,0 +1,26 @@
+<?php
+    // Khai bao bien item
+    $items = $block->getDataBlocks();
+?>
+    <div class="table-wrapper questions">
+        <table class="data table table-questions" id="my-questions-table">
+            <caption class="table-caption"><?= $block->escapeHtml(__('Product questions')) ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col item"><?= $block->escapeHtml(__('Product Name')) ?></th>
+                    <th scope="col" class="col question"><?= $block->escapeHtml(__('Question')) ?></th>
+                    <th scope="col" class="col answer"><?= $block->escapeHtml(__('Answer')) ?></th>
+                    <th scope="col" class="col actions">&nbsp;</th>
+                </tr>
+            </thead>
+           <tbody>
+                <?php foreach ($items as $question) : ?>
+                    <tr>
+                       <td><?php echo $question['name'] ?></td>
+                       <td><?php echo $question['question'] ?></td>
+                       <td><?php echo $question['answer'] ?></td>
+                    </tr>
+                <?php endforeach; ?>
+           </tbody>
+        </table>
+    </div>

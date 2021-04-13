@@ -6,12 +6,14 @@
 namespace AHT\Question\Controller\Adminhtml\Question;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;
+use Magento\Catalog\Helper\Product;
 
 /**
  * Edit CMS block action.
  */
-class Fix extends \Magento\Backend\App\Action implements HttpGetActionInterface
+class Price extends \Magento\Backend\App\Action implements HttpGetActionInterface
 {
+    protected $helper;
     /**
      * Authorization level of a basic admin session
      *
@@ -37,10 +39,12 @@ class Fix extends \Magento\Backend\App\Action implements HttpGetActionInterface
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Registry $coreRegistry,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
+        \Magento\Framework\Helper\Product $helperData
     ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->_coreRegistry = $coreRegistry;
+        $this->helperData = $helperData;
         parent::__construct($context);
     }
     /**
@@ -66,30 +70,9 @@ class Fix extends \Magento\Backend\App\Action implements HttpGetActionInterface
     public function execute()
     {  
         // 1. Get ID and create model
-        $id = $this->getRequest()->getParam('question_id');
-        $model = $this->_objectManager->create(\AHT\Question\Model\Question::class);
-        // 2. Initial checking
-        if ($id) {
-            $model->load($id); 
-            if (!$model->getId()) {
-                $this->messageManager->addErrorMessage(__('apc_exists(keys).'));
-                /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
-                $resultRedirect = $this->resultRedirectFactory->create();
-                return $resultRedirect->setPath('*/*/');
-            }
-        }
-
-        $this->_coreRegistry->register('question', $model);
-
-        // 5. Build edit form
-        /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
-        $resultPage = $this->resultPageFactory->create();
-        // $this->initPage($resultPage)->addBreadcrumb(
-        //     $id ? __('Edit Question') : __('New Block'),
-        //     $id ? __('Edit Question') : __('New Block')
-        // ); 
-        $resultPage->getConfig()->getTitle()->prepend(__('Question Details'));
-        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? 'Question Details' : __('New Question'));
-        return $resultPage;
+        $id = $this->getRequest()->getParam('product_id');
+        $model = $this->_objectManager->create(\Magento\Catalog\Model\Product::class);
+        $model->load($id); 
+        echo $this->helperData->getPrice($model);
     }
 }

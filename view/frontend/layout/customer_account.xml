@@ -11,7 +11,8 @@
             <block class="Magento\Customer\Block\Account\SortLinkInterface" name="customer-question-navigation" ifconfig="question_pending/question/is_enabled">
                 <arguments>
                     <argument name="label" xsi:type="string" translate="true">My Question</argument>
-                    <argument name="path" xsi:type="string">qanda/customer</argument>
+                    <!-- Link url tim den controller -->
+                    <argument name="path" xsi:type="string">question/customer</argument> 
                     <argument name="sortOrder" xsi:type="number">210</argument>
                 </arguments>
             </block>

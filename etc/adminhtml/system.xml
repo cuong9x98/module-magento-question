@@ -15,6 +15,10 @@
                     <label>Is Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+                <field id="textarea" translate="label" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Text</label>
+                    <comment>Kiem tra gia tri nhan vao cua file system.</comment>
+                </field>
             </group>
         </section>
     </system>

@@ -53,36 +53,36 @@ class Edit extends \Magento\Backend\App\Action
      */
     public function execute()
     {
+        // Edit truc tiep tren form
         /** @var \Magento\Framework\Controller\Result\Json $resultJson */
-        $resultJson = $this->jsonFactory->create();
-        $error = false;
-        $messages = [];
+        // $resultJson = $this->jsonFactory->create();
+        // $error = false;
+        // $messages = [];
+        // if ($this->getRequest()->getParam('isAjax')) {
+        //     $models = $this->getRequest()->getParam('items', []);
+        //     if (!count($models)) {
+        //         $messages[] = __('Please correct the data sent.');
+        //         $error = true;
+        //     } else {
+        //         foreach (array_keys($models) as $blockId) {
+        //             /** @var \Magento\Cms\Model\Block $block */
+        //             $block = $this->questionFactory->create();
+        //             $this->questionResource->load($block, $blockId);
+        //             try {
+        //                 $block->setData(array_merge($block->getData(), $models[$blockId]));
+        //                 $this->questionResource->save($block);
+        //             } catch (\Exception $e) {
+        //                 $messages[] = '[Question ID: ' . $block->getId() . '] ' . __($e->getMessage());
+        //                 $error = true;
+        //             }
+        //         }
+        //     }
+        // }
 
-        if ($this->getRequest()->getParam('isAjax')) {
-            $models = $this->getRequest()->getParam('items', []);
-            if (!count($models)) {
-                $messages[] = __('Please correct the data sent.');
-                $error = true;
-            } else {
-                foreach (array_keys($models) as $blockId) {
-                    /** @var \Magento\Cms\Model\Block $block */
-                    $block = $this->questionFactory->create();
-                    $this->questionResource->load($block, $blockId);
-                    try {
-                        $block->setData(array_merge($block->getData(), $models[$blockId]));
-                        $this->questionResource->save($block);
-                    } catch (\Exception $e) {
-                        $messages[] = '[Question ID: ' . $block->getId() . '] ' . __($e->getMessage());
-                        $error = true;
-                    }
-                }
-            }
-        }
-
-        return $resultJson->setData([
-            'messages' => $messages,
-            'error' => $error
-        ]);
+        // return $resultJson->setData([
+        //     'messages' => $messages,
+        //     'error' => $error
+        // ]);
     }
 
     /**

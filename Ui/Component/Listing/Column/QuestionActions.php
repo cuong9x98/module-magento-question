@@ -22,6 +22,7 @@ class QuestionActions extends Column
      */
     const URL_PATH_EDIT = 'question/question/fix';
     const URL_PATH_DELETE = 'question/question/delete';
+    const URL_PATH_GET_PRICE = 'question/question/price';
 
     /**
      * @var UrlInterface
@@ -61,14 +62,14 @@ class QuestionActions extends Column
                 if (isset($item['question_id'])) {
                     $question = $this->getEscaper()->escapeHtmlAttr($item['question']);
                     $item[$this->getData('name')] = [
-                        'edit' => [
+                        'fix' => [
                             'href' => $this->urlBuilder->getUrl(
                                 static::URL_PATH_EDIT,
                                 [
                                     'question_id' => $item['question_id'],
                                 ]
                             ),
-                            'label' => __('Edit'),
+                            'label' => __('Sua'),
                             '__disableTmpl' => true,
                         ],
                         'delete' => [
@@ -78,7 +79,7 @@ class QuestionActions extends Column
                                     'question_id' => $item['question_id'],
                                 ]
                             ),
-                            'label' => __('Delete'),
+                            'label' => __('Xoa'),
                             'confirm' => [
                                 'title' => __('Delete %1', $question),
                                 'message' => __('Are you sure you want to delete a %1 record?', $question),
@@ -86,11 +87,20 @@ class QuestionActions extends Column
                             'post' => true,
                             '__disableTmpl' => true,
                         ],
+                        'price' => [
+                            'href' => $this->urlBuilder->getUrl(
+                                static::URL_PATH_GET_PRICE,
+                                [
+                                    'product_id' => $item['product_id'],
+                                ]
+                            ),
+                            'label' => __('Get price'),
+                            '__disableTmpl' => true,
+                        ],
                     ];
                 }
             }
         }
-
         return $dataSource;
     }
 

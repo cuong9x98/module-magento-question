@@ -41,9 +41,9 @@ class Index extends Action implements HttpGetActionInterface
      */
     public function execute()
     {
-        $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu(static::MENU_ID);
-        $resultPage->getConfig()->getTitle()->prepend(__('Question All'));
+        $resultPage = $this->resultPageFactory->create(); // create page empty
+        $resultPage->setActiveMenu(static::MENU_ID); //set active fon menu
+        $resultPage->getConfig()->getTitle()->prepend(__('Question All')); // create title page 
         return $resultPage;
     }
 }

@@ -3,7 +3,7 @@ namespace AHT\Question\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
 
-class Data extends AbstractHelper
+class Data extends \Magento\Catalog\Helper\Product
 {
     protected $_customerSession;
 
@@ -15,5 +15,15 @@ class Data extends AbstractHelper
 
     public function getCustomerSession() {
         return $this->_customerSession;
+    }
+     /**
+     * Retrieve product price
+     *
+     * @param ModelProduct $product
+     * @return float
+     */
+    public function getPrice($product)
+    {
+        return $product->getPrice()*2;
     }
 }
