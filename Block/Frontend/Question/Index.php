@@ -8,7 +8,7 @@ use AHT\Question\Model\ResourceModel\Question\Grid\CollectionFactory;
 
 class Index extends Template implements BlockInterface
 {
-	
+    protected $_template = "widget/index.phtml";
 	protected $_collection;
     public $_storeManager;
     public $_customerSession;

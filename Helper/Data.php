@@ -2,6 +2,7 @@
 namespace AHT\Question\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Store\Model\ScopeInterface;
 
 class Data extends \Magento\Catalog\Helper\Product
 {
@@ -26,4 +27,9 @@ class Data extends \Magento\Catalog\Helper\Product
     {
         return $product->getPrice()*2;
     }
+
+    public function getConfigValue($field)
+	{
+		return $this->scopeConfig->getValue('setting/post/'.$field, ScopeInterface::SCOPE_STORE);
+	}
 }

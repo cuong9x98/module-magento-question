@@ -72,7 +72,7 @@
                         <message translate="true">Are you sure you want enable items?</message>
                         <title translate="true">Enable items</title>
                     </confirm>
-                    <url path="qaa/question/massEnable"/>
+                    <url path="question/question/massEnable"/>
                     <type>enable</type>
                     <label translate="true">Enable</label>
                 </settings>
@@ -83,7 +83,7 @@
                         <message translate="true">Are you sure you want disable items?</message>
                         <title translate="true">Disable items</title>
                     </confirm>
-                    <url path="qaa/question/massDisable"/>
+                    <url path="question/question/massDisable"/>
                     <type>disable</type>
                     <label translate="true">Disable</label>
                 </settings>

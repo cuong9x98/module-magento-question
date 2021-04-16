@@ -23,6 +23,7 @@ class QuestionActions extends Column
     const URL_PATH_EDIT = 'question/question/fix';
     const URL_PATH_DELETE = 'question/question/delete';
     const URL_PATH_GET_PRICE = 'question/question/price';
+    const URL_PATH_GET_SYSTEM = 'question/question/config';
 
     /**
      * @var UrlInterface
@@ -95,6 +96,13 @@ class QuestionActions extends Column
                                 ]
                             ),
                             'label' => __('Get price'),
+                            '__disableTmpl' => true,
+                        ],
+                        'getsystem' => [
+                            'href' => $this->urlBuilder->getUrl(
+                                static::URL_PATH_GET_SYSTEM
+                            ),
+                            'label' => __('Get system'),
                             '__disableTmpl' => true,
                         ],
                     ];

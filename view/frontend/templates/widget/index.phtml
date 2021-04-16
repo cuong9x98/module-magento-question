@@ -1,6 +1,7 @@
 <?php
     // Khai bao bien item
     $items = $block->getDataBlocks();
+    $i = 0;
 ?>
     <div class="table-wrapper questions">
         <table class="data table table-questions" id="my-questions-table">
@@ -15,6 +16,12 @@
             </thead>
            <tbody>
                 <?php foreach ($items as $question) : ?>
+                    <?php 
+                        if ($i==$block->getData('quantity')) {
+                            break;
+                        }
+                        $i+=1; 
+                    ?>
                     <tr>
                        <td><?php echo $question['name'] ?></td>
                        <td><?php echo $question['question'] ?></td>

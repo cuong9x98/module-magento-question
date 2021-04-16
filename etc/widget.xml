@@ -8,10 +8,15 @@
                 <label translate="true">Template</label>
                 <options>
                     <option name="default" value="widget/index.phtml" selected="true">
-                        <label translate="true">Question ALll</label>
+                        <label translate="true">Question </label>
                     </option>
                 </options>
             </parameter>
         </parameters>
+         <parameters>
+			<parameter name="quantity" sort_order="10" visible="true" xsi:type="text">
+				<label>The number of records</label>
+			</parameter>
+		</parameters>
     </widget>
 </widgets>

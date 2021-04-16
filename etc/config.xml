@@ -1,12 +1,11 @@
 <?xml version="1.0"?>
-<config
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
-        <question_pending>
-            <question>
-                <is_enabled>0</is_enabled>
-                <textarea>Test hien thi xem ra the nao da</textarea>
-            </question>
-        </question_pending>
+        <setting>
+            <post>
+                <enable>1</enable>
+                <display_text>ViMagento HelloWorld</display_text>
+            </post>
+        </setting>
     </default>
 </config>
